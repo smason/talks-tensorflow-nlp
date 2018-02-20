@@ -24,7 +24,7 @@ useful when doing data-science things in Python:
    `virtualenv`:
 
    ``` shell
-   > pip install -U numpy scipy pandas matplotlib jupyter
+   pip install -U numpy scipy pandas matplotlib jupyter
    ```
 
    A Jupyter notebook "allows you to create and share documents that
@@ -46,7 +46,7 @@ Quite a big repository, so I'd suggest a shallow clone (still ~360MB),
 and then proceed as suggested above:
 
 ``` shell
-git clone --depth 6 https://github.com/tensorflow/models.git
+git clone --depth 10 https://github.com/tensorflow/models.git
 cd models/samples/core/get_started/
 python premade_estimator.py
 ```
@@ -61,3 +61,19 @@ some data to play with:
 
 > <https://www.reddit.com/r/datasets/>
 
+I'm starting with the [Cornell Movie-Dialogs Corpus].  Mostly because
+this is conversational data and it includes a set of genres that we
+can predict from the conversations.
+
+[Cornell Movie-Dialogs Corpus]: http://www.cs.cornell.edu/~cristian/Cornell_Movie-Dialogs_Corpus.html
+
+As is the case with most data, the people producing it have invented
+their own weird, wonderful and idiosyncratic file format.  They use a
+delimiter separated file format, like CSV, but use a delimiter of `
++++$+++ ` for some weird reason.  They also include various fields
+containing a JSON-like "array of strings"---but of course it's invalid
+JSON and this needs to be munged before any standard JSON parser will
+touch it.
+
+That said, it's pretty easy to coerce `pandas` into handling these
+files and end up with a mostly conventional set of `DataFrame`s.
